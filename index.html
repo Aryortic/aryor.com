@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ARYOR</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#10262E;--sea:#0F7A85;--glass:#E6F2F3;--bg:#F6FAFA;--honey:#E8A33D;--like:#D6455D;--line:#CFE0E2;--muted:#52707A}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.15;margin:0}
+a{color:var(--sea)}
+button,input{font:inherit}
+:focus-visible{outline:3px solid var(--honey);outline-offset:2px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px}
+header{background:#fff;border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;gap:12px}
+.logo{font-family:Fraunces,Georgia,serif;font-weight:700;font-size:1.35rem}
+.btn{border:0;border-radius:999px;padding:10px 18px;background:var(--sea);color:#fff;cursor:pointer;text-decoration:none;display:inline-block;font-weight:600}
+.btn.alt{background:var(--glass);color:var(--ink)}
+.btn.wa{background:#1FA855}
+.hero{position:relative;overflow:hidden;background:linear-gradient(160deg,#0B4F5A,#0F7A85 60%,#5FB8BE);color:#fff;padding:64px 0 72px}
+.hero h1{font-size:clamp(2rem,6vw,3.4rem);max-width:15ch}
+.hero p{max-width:46ch;font-size:1.1rem;opacity:.92}
+.pour{position:absolute;right:-60px;top:-40px;width:340px;height:340px;border-radius:46% 54% 60% 40%/50% 40% 60% 50%;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.55),rgba(232,163,61,.55) 55%,rgba(232,163,61,.15));filter:blur(1px)}
+.pour.two{right:140px;top:150px;width:170px;height:170px;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.5),rgba(255,255,255,.12))}
+.bar{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0 14px;align-items:center}
+.bar input[type=search]{flex:1 1 240px;padding:12px 16px;border:1px solid var(--line);border-radius:999px;background:#fff}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 14px;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.thumb{aspect-ratio:1/1;background:linear-gradient(135deg,var(--glass),#fff);display:grid;place-items:center;font-size:2.4rem;position:relative}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.like{position:absolute;top:10px;right:10px;width:38px;height:38px;border-radius:50%;border:0;background:#fff;cursor:pointer;font-size:1.15rem;color:var(--muted)}
+.like[aria-pressed=true]{color:var(--like)}
+.info{padding:14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.info .cat{font-size:.85rem;color:var(--muted)}
+.price{font-weight:700}
+.info .btn{margin-top:auto;text-align:center}
+.empty{grid-column:1/-1;text-align:center;padding:40px;color:var(--muted)}
+section.join{margin:56px 0;background:var(--ink);color:#fff;border-radius:18px;padding:34px}
+section.join p{max-width:52ch}
+footer{padding:28px 0 40px;color:var(--muted);font-size:.92rem}
+dialog{border:0;border-radius:16px;max-width:560px;width:calc(100% - 28px);padding:22px;color:var(--ink)}
+dialog::backdrop{background:rgba(16,38,46,.55)}
+.dhead{display:flex;justify-content:space-between;align-items:start;gap:10px;margin-bottom:12px}
+.x{border:0;background:var(--glass);border-radius:50%;width:36px;height:36px;cursor:pointer}
+.find{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.find input{flex:1 1 150px;padding:10px 14px;border:1px solid var(--line);border-radius:999px}
+.shop{border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:10px}
+.shop h3{font-size:1.05rem}
+.shop small{color:var(--muted)}
+.badge{display:inline-block;background:var(--glass);border-radius:999px;padding:2px 10px;font-size:.82rem;margin-left:6px}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.acts .btn{padding:7px 14px;font-size:.9rem}
+@media (prefers-reduced-motion:no-preference){.pour{animation:drift 9s ease-in-out infinite alternate}@keyframes drift{to{transform:translate(-18px,16px) rotate(8deg)}}}
+
+body{background:linear-gradient(180deg,#F6FAFA,#E3F1F2 45%,#F6FAFA)}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(520px 520px at 8% 30%,rgba(232,163,61,.14),transparent 70%),radial-gradient(620px 620px at 95% 70%,rgba(15,122,133,.15),transparent 70%)}
+.nav{display:flex;gap:18px;font-size:.95rem}.nav a{color:var(--ink);text-decoration:none}.nav a:hover{color:var(--sea)}
+@media(max-width:760px){.nav{display:none}}
+.hero{min-height:88vh;display:flex;align-items:center;padding:80px 0 120px;background:radial-gradient(900px 500px at 80% 10%,rgba(232,163,61,.35),transparent 60%),linear-gradient(160deg,#06323B,#0B5A66 50%,#1C9AA5)}
+.hero h1{font-size:clamp(2.4rem,7vw,4.4rem);max-width:14ch}
+.kicker{font-size:.95rem;letter-spacing:.02em;margin:0 0 12px;color:#bfe6ea}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.btn.gold{background:var(--honey);color:var(--ink)}.btn.ghost{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.45)}
+.pour.three{right:30%;top:-90px;width:220px;height:220px;opacity:.5}.pour.four{right:6%;bottom:60px;top:auto;width:120px;height:120px;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.6),rgba(15,122,133,.3))}
+.wave{position:absolute;left:0;bottom:-1px;width:100%;height:80px}
+.sec{padding:64px 18px}.sec h2,.ptitle{font-size:clamp(1.7rem,4vw,2.5rem)}
+.lead{max-width:60ch;color:var(--muted);font-size:1.05rem;margin:10px 0 24px}
+main{position:relative;padding-top:24px}
+.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.feat div{background:rgba(255,255,255,.7);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:16px;padding:20px}
+.feat h3{margin-bottom:6px;font-size:1.15rem}.feat p{margin:0;color:var(--muted)}
+.how{background:linear-gradient(160deg,#0B4F5A,#0F7A85);color:#fff;max-width:none;padding:64px 0}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px;margin-top:22px}
+.steps b{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--honey);color:var(--ink);margin-bottom:10px}
+.steps p{margin:6px 0 0;color:#d6ecee}
+.customcard{display:grid;grid-template-columns:1fr 1fr;gap:28px;background:linear-gradient(135deg,#10262E,#0B4F5A);color:#fff;border-radius:22px;padding:36px}
+@media(max-width:760px){.customcard{grid-template-columns:1fr;padding:24px}}
+#cform{display:flex;flex-direction:column;gap:10px}
+#cform input,#cform textarea{padding:12px 14px;border:0;border-radius:12px;font:inherit}
+details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:600}details p{margin:10px 0 0;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<!-- ================================================================
+  1) YAHAN APNI DETAILS BHARO (sirf ye 3 jagah edit karni hain: BRAND, PRODUCTS, SHOPS)
+  ================================================================ -->
+<script>
+const BRAND = {
+  name: "ARYOR",
+  tagline: "Aapke andaaz ki khaas chamak",
+  about: "ARYOR ki jewellery aur home decor aapke andaaz ko ek alag pehchaan dete hain. Website par pasand karo, aur apne nazdeek ki dukaan se seedha le jao.",
+  whatsapp: "91__________",      // WhatsApp number: 91 ke baad 10 digit, bina + ya space ke
+  phone: "__________",
+  email: "____@____.com",
+  instagram: "@________",
+  address: "____ Aapka pura pata ____",
+  city: "____"
+};
+
+// Har product ke liye ek block. image me photo ka naam likho (jaise "pendant.jpg"), khali rakhoge to icon dikhega.
+// price me sirf number likho (jaise 499). Naya product jodne ke liye ek block copy karke id badal do.
+const PRODUCTS = [
+  { id: 1, name: "Pendant", category: "Jewellery", price: "", image: "", icon: "💎", desc: "Halka aur chamakdaar pendant, roz pehenne ke liye." },
+  { id: 2, name: "Earrings", category: "Jewellery", price: "", image: "", icon: "✨", desc: "Halke aur rangeen jhumke. Har jodi ka design alag hota hai." },
+  { id: 3, name: "Name Keychain", category: "Gifts", price: "", image: "", icon: "🔑", desc: "Naam ya initial wala keychain, gift ke liye accha. Custom bhi ban sakta hai." },
+  { id: 4, name: "Marble Coaster Set", category: "Home Decor", price: "", image: "", icon: "☕", desc: "Chai ya coffee ke cup ke liye coasters, marble jaisi chamak ke saath." },
+  { id: 5, name: "Ocean Wall Clock", category: "Home Decor", price: "", image: "", icon: "🌊", desc: "Samundar ki lehron jaisi design wali ghadi, ghar ki deewar ke liye." },
+  { id: 6, name: "Custom Nameplate", category: "Custom", price: "", image: "", icon: "🏠", desc: "Ghar ya office ke liye naam ki plate, apne pasand ke rang aur size me." }
+];
+
+// Har shop ke liye ek block. stock me wo product id likho jo us shop me milte hain.
+// lat/lng (Google Maps se) bharoge to "sabse nazdeek" sahi sort hoga. Khali chod sakte ho.
+const SHOPS = [
+  { name: "____ Shop ka naam ____", address: "____ pura pata ____", city: "", pincode: "", phone: "", whatsapp: "", lat: null, lng: null, delivery: false, stock: [1, 2, 3] },
+  { name: "____ Doosri shop ka naam ____", address: "____ pura pata ____", city: "", pincode: "", phone: "", whatsapp: "", lat: null, lng: null, delivery: false, stock: [4, 5, 6] }
+];
+</script>
+<!-- ================================================================ -->
+
+<header>
+  <div class="wrap">
+    <div class="logo" id="brandName"></div>
+    <nav class="nav"><a href="#why">Hamare baare me</a><a href="#products">Products</a><a href="#how">Kaise kharide</a><a href="#custom">Custom order</a></nav>
+    <a class="btn wa" id="waTop" target="_blank" rel="noopener">WhatsApp par baat karo</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="pour" aria-hidden="true"></div><div class="pour two" aria-hidden="true"></div>
+  <div class="pour three" aria-hidden="true"></div><div class="pour four" aria-hidden="true"></div>
+  <div class="wrap" style="position:relative">
+    <p class="kicker">Jewellery aur home decor</p>
+    <h1 id="tagline"></h1>
+    <p id="about"></p>
+    <div class="cta"><a class="btn gold" href="#products">Products dekho</a><a class="btn ghost" href="#custom">Apna design banwao</a></div>
+  </div>
+  <svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0,50 C240,100 480,0 760,40 C1040,80 1250,20 1440,55 L1440,90 L0,90 Z" fill="#F6FAFA"/></svg>
+</div>
+
+<section class="sec wrap" id="why">
+  <h2>Jo dikhe alag, jo rahe saath</h2>
+  <p class="lead">ARYOR ke products aapki jewellery aur aapke ghar ko ek khaas chamak dene ke liye hain. Rang, design aur finishing par poora dhyaan, taki har piece alag dikhe aur lambe time tak saath rahe.</p>
+  <div class="feat">
+    <div><h3>Khaas design</h3><p>Har product me rang aur design ka apna alag andaaz hai.</p></div>
+    <div><h3>Sabse alag</h3><p>Aisa look jo aam dukaano me nahi milta, isliye aapka piece sabse alag dikhta hai.</p></div>
+    <div><h3>Custom order</h3><p>Naam, rang, size ya photo, jo aap chaho, uske hisaab se banwa sakte ho.</p></div>
+    <div><h3>Nazdeek ki dukaan se lo</h3><p>Website par dekho, phir apne paas ki dukaan se seedha le jao ya delivery mangwao.</p></div>
+  </div>
+</section>
+
+<main class="wrap" id="products">
+  <h2 class="ptitle">Hamare products</h2>
+  <p class="lead">Pasand aaye to heart dabao, aur "Kahan milega?" se apne nazdeek ki dukaan dekho.</p>
+  <div class="bar">
+    <input type="search" id="q" placeholder="Product search karo" aria-label="Product search">
+  </div>
+  <div class="chips" id="chips"></div>
+  <div class="grid" id="grid"></div>
+
+  <section class="join">
+    <h2>Shopkeeper ho? Hamare saath judo</h2>
+    <p>Hamare products apni dukaan me rakho. Customer jab product pasand karega, to use aapki dukaan ka rasta dikhaya jayega.</p>
+    <a class="btn wa" id="waJoin" target="_blank" rel="noopener" style="margin-top:12px">WhatsApp par judo</a>
+  </section>
+</main>
+
+<section class="sec how" id="how"><div class="wrap">
+  <h2>Kaise kharide</h2>
+  <div class="steps">
+    <div><b>1</b><h3>Product chuno</h3><p>Website par products dekho aur jo pasand aaye us par heart dabao.</p></div>
+    <div><b>2</b><h3>Dukaan dhundo</h3><p>"Kahan milega?" dabao, apna pincode likho ya location do. Paas wali dukaan upar dikhegi.</p></div>
+    <div><b>3</b><h3>Le jao ya mangwao</h3><p>Dukaan ko call ya WhatsApp karo, seedha le jao, ya jahan delivery hai wahan mangwao.</p></div>
+  </div>
+</div></section>
+
+<section class="sec wrap" id="custom">
+  <div class="customcard">
+    <div><h2>Apna design banwao</h2><p class="lead" style="color:#d6ecee">Naam wala keychain, shaadi ka gift, ya ghar ki nameplate. Bata do kya chahiye, hum banayenge.</p></div>
+    <form id="cform">
+      <input name="n" placeholder="Aapka naam" required aria-label="Aapka naam">
+      <textarea name="t" rows="3" placeholder="Kya banwana hai? Rang, size, naam likho" required aria-label="Kya banwana hai"></textarea>
+      <button class="btn gold" type="submit">WhatsApp par bhejo</button>
+    </form>
+  </div>
+</section>
+
+<section class="sec wrap" id="faq">
+  <h2>Aksar puchhe jaane wale sawal</h2>
+  <details><summary>Products ki dekhbhal kaise karein?</summary><p>Halke geele kapde se saaf karo. Lambe time tak pani me na rakho, aur tez dhoop ya bahut garmi se bachao, kyunki isse rang halka ho sakta hai.</p></details>
+  <details><summary>Custom order me kitna time lagta hai?</summary><p>Lagbhag ____ din. Design ke hisaab se time alag ho sakta hai.</p></details>
+  <details><summary>Delivery kaise hoti hai?</summary><p>Jin dukaano par "Delivery hai" likha hai wahan se mangwa sakte ho. Baaki jagah ke liye ____.</p></details>
+  <details><summary>Product kharab nikle to kya karein?</summary><p>____ (Apni return/exchange policy yahan likho.)</p></details>
+</section>
+
+<footer>
+  <div class="wrap" id="foot"></div>
+</footer>
+
+<dialog id="dlg" aria-labelledby="dTitle">
+  <div class="dhead">
+    <div><h2 id="dTitle" style="font-size:1.3rem"></h2><small style="color:var(--muted)">Ye product in dukaano me milega</small></div>
+    <button class="x" id="close" aria-label="Band karo">✕</button>
+  </div>
+  <div class="find">
+    <input id="loc" placeholder="Apna pincode ya sheher likho" aria-label="Pincode ya sheher">
+    <button class="btn alt" id="gps" type="button">Meri location use karo</button>
+  </div>
+  <div id="shopList"></div>
+  <a class="btn wa" id="direct" target="_blank" rel="noopener" style="display:block;text-align:center;margin-top:6px">Seedha brand se order karo</a>
+</dialog>
+
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const wa = (num, text) => "https://wa.me/" + String(num).replace(/\D/g, "") + "?text=" + encodeURIComponent(text);
+
+let liked = new Set();
+try { liked = new Set(JSON.parse(localStorage.getItem("liked") || "[]")); } catch (e) {}
+const saveLiked = () => { try { localStorage.setItem("liked", JSON.stringify([...liked])); } catch (e) {} };
+
+let cat = "Sab", user = null, current = null;
+
+$("#brandName").textContent = BRAND.name;
+$("#tagline").textContent = BRAND.tagline;
+$("#about").textContent = BRAND.about;
+$("#waTop").href = wa(BRAND.whatsapp, "Namaste, mujhe aapke products ke baare me jaanna hai.");
+$("#waJoin").href = wa(BRAND.whatsapp, "Namaste, main shopkeeper hoon aur aapke products apni dukaan me rakhna chahta hoon.");
+$("#foot").innerHTML = "<strong>" + esc(BRAND.name) + "</strong><br>" + esc(BRAND.address) + "<br>Phone: " + esc(BRAND.phone) + " | " + esc(BRAND.email) + " | Instagram: " + esc(BRAND.instagram);
+document.title = BRAND.name;
+
+function renderChips() {
+  const cats = ["Sab", "Pasandida", ...new Set(PRODUCTS.map(p => p.category).filter(Boolean))];
+  $("#chips").innerHTML = cats.map(c => `<button class="chip" aria-pressed="${c === cat}" data-c="${esc(c)}">${esc(c)}</button>`).join("");
+}
+
+function renderGrid() {
+  const q = $("#q").value.trim().toLowerCase();
+  const list = PRODUCTS.filter(p =>
+    (cat === "Sab" || (cat === "Pasandida" ? liked.has(p.id) : p.category === cat)) &&
+    (!q || (p.name + " " + p.category + " " + p.desc).toLowerCase().includes(q)));
+  $("#grid").innerHTML = list.length ? list.map(p => `
+    <article class="card">
+      <div class="thumb">${p.image ? `<img src="${esc(p.image)}" alt="${esc(p.name)}" loading="lazy">` : (p.icon || "🔮")}
+        <button class="like" data-like="${p.id}" aria-pressed="${liked.has(p.id)}" aria-label="Pasand karo">♥</button></div>
+      <div class="info">
+        <span class="cat">${esc(p.category)}</span>
+        <h3>${esc(p.name)}</h3>
+        <span class="price">${p.price ? "₹" + esc(p.price) : ""}</span>
+        <span>${esc(p.desc)}</span>
+        <button class="btn" data-shops="${p.id}">Kahan milega?</button>
+      </div>
+    </article>`).join("") : `<div class="empty">Koi product nahi mila. Doosra naam ya category try karo.</div>`;
+}
+
+const km = (a, b, c, d) => {
+  const r = x => x * Math.PI / 180, R = 6371;
+  const h = Math.sin(r(c - a) / 2) ** 2 + Math.cos(r(a)) * Math.cos(r(c)) * Math.sin(r(d - b) / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(h));
+};
+
+function renderShops() {
+  const text = $("#loc").value.trim().toLowerCase();
+  let shops = SHOPS.filter(s => s.stock.includes(current.id)).map(s => {
+    const d = user && s.lat != null && s.lng != null ? km(user.lat, user.lng, s.lat, s.lng) : null;
+    const match = text && ((s.pincode || "").toLowerCase() === text || (s.city || "").toLowerCase().includes(text));
+    return { s, d, match };
+  });
+  shops.sort((x, y) => (y.match - x.match) || ((x.d ?? 1e9) - (y.d ?? 1e9)));
+  $("#shopList").innerHTML = shops.length ? shops.map(({ s, d, match }) => {
+    const map = s.lat != null ? `https://www.google.com/maps/search/?api=1&query=${s.lat},${s.lng}` :
+      "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(s.name + " " + s.address + " " + s.city);
+    return `<div class="shop">
+      <h3>${esc(s.name)}${s.delivery ? '<span class="badge">Delivery hai</span>' : ""}${match ? '<span class="badge">Aapke area me</span>' : ""}</h3>
+      <small>${esc(s.address)}, ${esc(s.city)} ${esc(s.pincode)}${d != null ? " · " + d.toFixed(1) + " km door" : ""}</small>
+      <div class="acts">
+        ${s.phone ? `<a class="btn alt" href="tel:${esc(s.phone)}">Call karo</a>` : ""}
+        ${s.whatsapp ? `<a class="btn wa" target="_blank" rel="noopener" href="${wa(s.whatsapp, "Namaste, kya " + current.name + " available hai?")}">WhatsApp</a>` : ""}
+        <a class="btn alt" target="_blank" rel="noopener" href="${map}">Rasta dekho</a>
+      </div></div>`;
+  }).join("") : `<p>Abhi koi dukaan is product ke saath judi nahi hai. Neeche se seedha order kar sakte ho.</p>`;
+}
+
+$("#chips").addEventListener("click", e => { const b = e.target.closest("[data-c]"); if (b) { cat = b.dataset.c; renderChips(); renderGrid(); } });
+$("#q").addEventListener("input", renderGrid);
+$("#grid").addEventListener("click", e => {
+  const l = e.target.closest("[data-like]");
+  if (l) { const id = +l.dataset.like; liked.has(id) ? liked.delete(id) : liked.add(id); saveLiked(); renderGrid(); return; }
+  const b = e.target.closest("[data-shops]");
+  if (b) {
+    current = PRODUCTS.find(p => p.id === +b.dataset.shops);
+    $("#dTitle").textContent = current.name;
+    $("#direct").href = wa(BRAND.whatsapp, "Namaste, mujhe " + current.name + " order karna hai.");
+    renderShops(); $("#dlg").showModal();
+  }
+});
+$("#loc").addEventListener("input", renderShops);
+$("#gps").addEventListener("click", () => {
+  if (!navigator.geolocation) return alert("Is browser me location nahi chal rahi. Pincode likh do.");
+  navigator.geolocation.getCurrentPosition(p => { user = { lat: p.coords.latitude, lng: p.coords.longitude }; renderShops(); },
+    () => alert("Location ki permission nahi mili. Pincode ya sheher likh do."));
+});
+$("#close").addEventListener("click", () => $("#dlg").close());
+$("#dlg").addEventListener("click", e => { if (e.target === $("#dlg")) $("#dlg").close(); });
+
+$("#cform").addEventListener("submit", e => {
+  e.preventDefault(); const f = new FormData(e.target);
+  window.open(wa(BRAND.whatsapp, "Namaste " + BRAND.name + ", mujhe custom order chahiye.\nNaam: " + f.get("n") + "\nKya banwana hai: " + f.get("t")), "_blank");
+});
+renderChips(); renderGrid();
+</script>
+</body>
+</html>
